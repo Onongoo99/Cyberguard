@@ -173,6 +173,33 @@
   .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
   .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
 
+  /* STAT STRIP */
+  .stat-strip {
+    display: flex;
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .stat-item { flex: 1; padding: 1.1rem 1rem; text-align: center; }
+  .stat-num { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1; margin-bottom: 0.3rem; }
+  .stat-label { font-size: 0.72rem; color: var(--gray-500); line-height: 1.4; }
+  .stat-divider { width: 1px; background: var(--gray-200); margin: 0.75rem 0; }
+
+  /* THREAT GRID */
+  .threat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.75rem; }
+  .threat-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; padding: 1rem; box-shadow: var(--shadow); display: flex; gap: 0.75rem; align-items: flex-start; }
+  .threat-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .threat-icon svg { width: 18px; height: 18px; }
+  .threat-content { flex: 1; min-width: 0; }
+  .threat-name { font-size: 0.85rem; font-weight: 700; color: var(--gray-900); margin-bottom: 0.2rem; }
+  .threat-pct { font-size: 1.1rem; font-weight: 800; color: var(--gray-700); margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+  .threat-bar-track { background: var(--gray-100); border-radius: 999px; height: 5px; overflow: hidden; margin-bottom: 0.5rem; }
+  .threat-bar-fill { height: 100%; border-radius: 999px; }
+  .threat-desc { font-size: 0.78rem; color: var(--gray-500); line-height: 1.5; }
+
   .card {
     background: var(--white);
     border: 1px solid var(--gray-200);
@@ -590,6 +617,223 @@
   .advice-content p { font-size: 0.8rem; color: var(--gray-500); line-height: 1.55; }
 
 
+
+  /* ===== URL MANAGER ===== */
+  .url-manager-panel {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .url-manager-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+
+  .url-manager-header:hover { background: var(--gray-50); }
+
+  .url-manager-icon {
+    width: 34px; height: 34px;
+    background: var(--primary-light);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .url-manager-icon svg { width: 16px; height: 16px; stroke: var(--primary); }
+  .url-manager-title { font-size: 0.9rem; font-weight: 700; color: var(--gray-900); }
+  .url-manager-sub { font-size: 0.75rem; color: var(--gray-500); margin-top: 0.1rem; }
+
+  .url-manager-toggle {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .url-manager-toggle svg { width: 14px; height: 14px; stroke: var(--gray-500); }
+  .url-manager-toggle.open { transform: rotate(180deg); }
+
+  .url-manager-body {
+    border-top: 1px solid var(--gray-200);
+    padding: 1.25rem;
+    display: none;
+  }
+
+  .url-manager-body.open { display: block; }
+
+  /* ADD FORM */
+  .url-add-form {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .url-form-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-500);
+    margin-bottom: 0.9rem;
+  }
+
+  .url-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .url-field { display: flex; flex-direction: column; gap: 0.3rem; }
+  .url-field:first-child { grid-column: 1 / -1; }
+
+  .url-field-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+
+  .required { color: #ef4444; }
+
+  .url-input {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 7px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.83rem;
+    color: var(--gray-900);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.15s;
+    font-family: inherit;
+    width: 100%;
+  }
+
+  .url-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(26,86,219,0.08); }
+  .url-field-hint { font-size: 0.72rem; color: var(--gray-400); }
+
+  /* PREVIEW */
+  .url-preview {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 0.75rem;
+    margin-top: 0.6rem;
+  }
+
+  .url-preview-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-400); margin-bottom: 0.5rem; }
+  .url-preview-inner { display: flex; gap: 0.75rem; align-items: flex-start; }
+
+  /* ADD BTN */
+  .url-add-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+
+  .url-add-btn svg { width: 14px; height: 14px; }
+  .url-add-btn:hover { background: var(--primary-dark); }
+
+  .url-error {
+    font-size: 0.8rem;
+    color: #dc2626;
+    font-weight: 500;
+  }
+
+  /* EXISTING LIST */
+  .url-existing-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-500);
+    margin-bottom: 0.75rem;
+  }
+
+  .url-list-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 9px;
+    margin-bottom: 0.5rem;
+    background: var(--white);
+    transition: box-shadow 0.15s;
+  }
+
+  .url-list-item:hover { box-shadow: var(--shadow); }
+
+  .url-list-thumb {
+    width: 64px;
+    height: 36px;
+    border-radius: 5px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--gray-200);
+  }
+
+  .url-list-info { flex: 1; min-width: 0; }
+  .url-list-title { font-size: 0.82rem; font-weight: 600; color: var(--gray-900); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .url-list-meta { font-size: 0.72rem; color: var(--gray-400); margin-top: 0.1rem; }
+
+  .url-list-actions { display: flex; gap: 0.35rem; flex-shrink: 0; }
+
+  .url-action-btn {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    border: 1px solid var(--gray-200);
+    background: var(--gray-50);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    color: var(--gray-500);
+  }
+
+  .url-action-btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .url-action-btn:hover { background: var(--white); box-shadow: var(--shadow); }
+  .url-action-btn.delete:hover { border-color: #ef4444; color: #ef4444; }
+  .url-action-btn.up:hover { border-color: var(--primary); color: var(--primary); }
+  .url-action-btn.down:hover { border-color: var(--primary); color: var(--primary); }
+
+  /* EMPTY STATE */
+  .yt-empty {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 3rem;
+    color: var(--gray-400);
+    text-align: center;
+  }
+
+  .yt-empty svg { width: 48px; height: 48px; }
+  .yt-empty p { font-size: 0.88rem; }
+
+
   /* ===== LESSON MODAL / OVERLAY ===== */
   .lesson-overlay {
     display: none;
@@ -935,34 +1179,111 @@
     <span class="badge">Мэдээлэл</span>
   </div>
 
+  <!-- STAT STRIP -->
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-num" style="color:#ef4444;">40%</div>
+      <div class="stat-label">Кибер халдлага өссөн (2024)</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num" style="color:#f59e0b;">60%</div>
+      <div class="stat-label">Нэг нууц үгийг олон аккаунтад ашигладаг</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num" style="color:#1a56db;">85%</div>
+      <div class="stat-label">Монголчууд смартфон ашигладаг</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-num" style="color:#10b981;">5 тэрбум</div>
+      <div class="stat-label">Кибер залилангийн хохирол (2024, төг)</div>
+    </div>
+  </div>
+
+  <!-- INFO CARDS -->
   <div class="grid-4" style="margin-bottom:2rem;">
     <div class="card">
       <div class="card-icon" style="background:#fee2e2;color:#dc2626;">
         <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
       </div>
       <h3>Кибер халдлага нэмэгдэж байна</h3>
-      <p>Монголд 2023–2024 онд кибер залилан, фишинг халдлага 40%-иар нэмэгдсэн.</p>
+      <p>Монголд 2023–2024 онд кибер залилан, фишинг халдлага 40%-иар нэмэгдсэн. Хохирогчдын дийлэнх нь 18–35 насны залуучууд байна. Халдлагын гол суваг нь SMS, Messenger, цахим шуудан юм.</p>
     </div>
     <div class="card">
       <div class="card-icon" style="background:#dcfce7;color:#16a34a;">
         <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </div>
       <h3>Нууц үгний аюулгүй байдал</h3>
-      <p>Монгол хэрэглэгчдийн 60% нь нэг нууц үгийг олон аккаунтад ашигладаг.</p>
+      <p>Монгол хэрэглэгчдийн 60% нэг нууц үгийг олон аккаунтад ашигладаг. Хамгийн түгээмэл нууц үгнүүд: "123456", "password", төрсөн он, нэр. Нууц үгний менежер ашигладаг хэрэглэгч 5%-иас доош байна.</p>
     </div>
     <div class="card">
       <div class="card-icon" style="background:#dbeafe;color:#1d4ed8;">
         <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
       </div>
       <h3>Гар утасны аюул</h3>
-      <p>Монголчуудын 85% смартфон ашигладаг ч хамгаалалтын тохиргоо хийдэг нь цөөхөн.</p>
+      <p>Монголчуудын 85% смартфон ашигладаг ч хамгаалалтын тохиргоо хийдэг нь цөөхөн. Гар утасны малвар, хуурамч аппликейшн, нийтийн Wi-Fi дамжсан халдлага жилд жилд нэмэгдэж байна.</p>
     </div>
     <div class="card">
       <div class="card-icon" style="background:#fef9c3;color:#ca8a04;">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       </div>
       <h3>Хууль эрх зүйн орчин</h3>
-      <p>Кибер гэмт хэргийн хуулийн хэрэгжилт сайжирч байгаа ч олон нийтийн мэдлэг дутмаг.</p>
+      <p>Монгол Улсын Эрүүгийн хуульд кибер гэмт хэргийн зохицуулалт орсон. Компьютерийн гэмт хэрэг үйлдэхэд 2–8 жил хорих ял оногддог. Гэвч мэдэгддэг гэмт хэргийн тоо бодит байдлаас хамаагүй бага байна.</p>
+    </div>
+  </div>
+
+  <!-- THREAT TYPES -->
+  <div class="section-header">
+    <h2>Түгээмэл кибер аюулын хэлбэрүүд</h2>
+    <span class="badge">Монголд</span>
+  </div>
+
+  <div class="threat-grid" style="margin-bottom:2rem;">
+    <div class="threat-card">
+      <div class="threat-icon" style="background:#fee2e2;color:#dc2626;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="threat-content">
+        <div class="threat-name">Фишинг</div>
+        <div class="threat-pct">38%</div>
+        <div class="threat-bar-track"><div class="threat-bar-fill" style="width:38%;background:#ef4444;"></div></div>
+        <div class="threat-desc">Хуурамч имэйл, SMS-ээр нууц мэдээлэл хулгайлах. Банк, засгийн газрын нэрээр залилах тохиолдол нийтлэг.</div>
+      </div>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon" style="background:#fef3c7;color:#d97706;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+      </div>
+      <div class="threat-content">
+        <div class="threat-name">Онлайн залилан</div>
+        <div class="threat-pct">29%</div>
+        <div class="threat-bar-track"><div class="threat-bar-fill" style="width:29%;background:#f59e0b;"></div></div>
+        <div class="threat-desc">Хуурамч бараа борлуулалт, хуурамч ажлын зар, хуурамч хөрөнгө оруулалтын схем нийгмийн сүлжээнд тархсан.</div>
+      </div>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon" style="background:#dbeafe;color:#1d4ed8;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div class="threat-content">
+        <div class="threat-name">Аккаунт хулгай</div>
+        <div class="threat-pct">21%</div>
+        <div class="threat-bar-track"><div class="threat-bar-fill" style="width:21%;background:#3b82f6;"></div></div>
+        <div class="threat-desc">Нийгмийн сүлжээ, цахим шуудангийн аккаунтыг хулгайлж, найз нөхдөд залилах зорилгоор ашиглах.</div>
+      </div>
+    </div>
+    <div class="threat-card">
+      <div class="threat-icon" style="background:#dcfce7;color:#16a34a;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="threat-content">
+        <div class="threat-name">Малвар / Вирус</div>
+        <div class="threat-pct">12%</div>
+        <div class="threat-bar-track"><div class="threat-bar-fill" style="width:12%;background:#10b981;"></div></div>
+        <div class="threat-desc">Хортой програм, ransomware-ийн тохиолдол аж ахуйн нэгж, байгууллагуудад нэмэгдэж байна.</div>
+      </div>
     </div>
   </div>
 
@@ -980,7 +1301,7 @@
           <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
         <h3>ДХИС (MCIT)</h3>
-        <p>Дижитал хөгжил, инноваци, харилцаа холбооны яам</p>
+        <p>Дижитал хөгжил, инноваци, харилцаа холбооны яам. Монгол улсын дижитал бодлого, кибер аюулгүй байдлын стратегийг хариуцдаг төрийн байгууллага.</p>
         <span class="card-link">mcit.gov.mn</span>
       </div>
     </a>
@@ -990,7 +1311,7 @@
           <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
         <h3>MN-CERT</h3>
-        <p>Монголын кибер аюулгүй байдлын хариу арга хэмжээний баг</p>
+        <p>Монголын кибер аюулгүй байдлын хариу арга хэмжээний баг. Кибер халдлага, осол мэдэгдүүлэх, тусламж авах гол байгууллага. Утас: 1800-1234</p>
         <span class="card-link">cert.gov.mn</span>
       </div>
     </a>
@@ -1000,7 +1321,7 @@
           <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <h3>Монголбанк</h3>
-        <p>Санхүүгийн кибер аюулгүй байдлын мэдээлэл</p>
+        <p>Санхүүгийн кибер аюулгүй байдлын мэдээлэл, банкны залилангийн тохиолдол мэдэгдэх. Санхүүгийн онлайн залилангийн эсрэг арга хэмжээг зохицуулдаг.</p>
         <span class="card-link">mongolbank.mn</span>
       </div>
     </a>
@@ -1010,7 +1331,7 @@
           <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
         </div>
         <h3>Хууль зүйн мэдээлэл</h3>
-        <p>Кибер гэмт хэрэгтэй холбоотой хуулийн мэдээлэл</p>
+        <p>Кибер гэмт хэрэгтэй холбоотой хуулийн мэдээлэл. Эрүүгийн хуулийн 21 дүгээр бүлэг — компьютерийн гэмт хэргийн зохицуулалт.</p>
         <span class="card-link">legalinfo.mn</span>
       </div>
     </a>
@@ -1166,11 +1487,87 @@
 
 <!-- ZUROMJ PAGE -->
 <div id="page-zuromj" class="page">
-  <div class="section-header">
-    <h2>YouTube — Бичлэгний линкүүд</h2>
-    <span class="badge">Видео</span>
+
+  <!-- URL MANAGER PANEL -->
+  <div class="url-manager-panel" id="url-manager">
+    <div class="url-manager-header" onclick="toggleUrlManager()">
+      <div style="display:flex;align-items:center;gap:0.6rem;">
+        <div class="url-manager-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div>
+          <div class="url-manager-title">Бичлэгний URL удирдах</div>
+          <div class="url-manager-sub">YouTube видео нэмэх, засах, устгах</div>
+        </div>
+      </div>
+      <div class="url-manager-toggle" id="url-manager-chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+
+    <div class="url-manager-body" id="url-manager-body">
+      <!-- ADD FORM -->
+      <div class="url-add-form">
+        <div class="url-form-title">Шинэ бичлэг нэмэх</div>
+        <div class="url-form-grid">
+          <div class="url-field">
+            <label class="url-field-label">YouTube URL <span class="required">*</span></label>
+            <input type="text" id="input-url" class="url-input" placeholder="https://www.youtube.com/watch?v=..." oninput="previewUrl()">
+            <div class="url-field-hint">watch?v=, youtu.be/ хоёуланг дэмждэг</div>
+          </div>
+          <div class="url-field">
+            <label class="url-field-label">Гарчиг <span class="required">*</span></label>
+            <input type="text" id="input-title" class="url-input" placeholder="Бичлэгийн нэр...">
+          </div>
+          <div class="url-field">
+            <label class="url-field-label">Суваг (channel)</label>
+            <input type="text" id="input-channel" class="url-input" placeholder="Сувгийн нэр...">
+          </div>
+          <div class="url-field">
+            <label class="url-field-label">Үргэлжлэх хугацаа</label>
+            <input type="text" id="input-duration" class="url-input" placeholder="12:34">
+          </div>
+        </div>
+
+        <!-- PREVIEW -->
+        <div class="url-preview" id="url-preview" style="display:none;">
+          <div class="url-preview-label">Preview</div>
+          <div class="url-preview-inner">
+            <img id="preview-thumb" src="" alt="" style="width:120px;height:68px;border-radius:6px;object-fit:cover;flex-shrink:0;">
+            <div>
+              <div id="preview-title" style="font-size:0.85rem;font-weight:600;color:var(--gray-900);margin-bottom:0.2rem;"></div>
+              <div id="preview-channel" style="font-size:0.75rem;color:var(--gray-500);"></div>
+              <div id="preview-vid" style="font-size:0.7rem;color:var(--gray-400);margin-top:0.15rem;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.75rem;">
+          <button class="url-add-btn" onclick="addYtLink()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Нэмэх
+          </button>
+          <div class="url-error" id="url-error" style="display:none;"></div>
+        </div>
+      </div>
+
+      <!-- EXISTING LIST -->
+      <div class="url-existing-title">Одоогийн бичлэгүүд (<span id="yt-count">0</span>)</div>
+      <div id="url-list"></div>
+    </div>
   </div>
-  <div class="yt-grid" id="yt-links"></div>
+
+  <!-- VIDEO GRID -->
+  <div class="section-header" style="margin-top:1.5rem;">
+    <h2>YouTube — Бичлэгний линкүүд</h2>
+    <span class="badge" id="yt-badge">0 видео</span>
+  </div>
+  <div class="yt-grid" id="yt-links">
+    <div class="yt-empty" id="yt-empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+      <p>Дээрх панелаас YouTube URL нэмнэ үү</p>
+    </div>
+  </div>
 
   <hr class="divider">
 
@@ -1287,14 +1684,22 @@ const trainingData = [
   { id:'tr9', tag:'ДАДАЛ · ДЭВШИЛТЭТ', title:'Ажлын байрны кибер аюулгүй байдал', desc:'Байгууллагын орчны аюулгүй ажиллагааны горим, дэвшилтэт хамгаалалт.', level:'dadal', minLevel:3, maxLevel:3, color:'#15803d' },
 ];
 
-const ytLinks = [
-  { title:'Нууц үгний аюулгүй байдал — Монгол тайлбар', channel:'MN-CERT Channel', duration:'12:34', videoId:'dQw4w9WgXcQ', bg:'#1e3a5f' },
-  { title:'Фишинг халдлагаас хэрхэн хамгаалах вэ?', channel:'Cyber Mongolia', duration:'8:20', videoId:'dQw4w9WgXcQ', bg:'#2d1b69' },
-  { title:'Сошиал медиагийн нууцлал тохиргоо', channel:'DigiMongol', duration:'15:02', videoId:'dQw4w9WgXcQ', bg:'#1a3a2a' },
-  { title:'VPN гэж юу вэ? Яагаад хэрэглэх вэ?', channel:'Tech Mongolia', duration:'10:55', videoId:'dQw4w9WgXcQ', bg:'#3b1f00' },
-  { title:'Кибер гэмт хэргийн тухай хуулийн тайлбар', channel:'LegalMN', duration:'20:10', videoId:'dQw4w9WgXcQ', bg:'#1f1a3a' },
-  { title:'Хакерчид хэрхэн аккаунт хулгайлдаг вэ?', channel:'Security Mongolia', duration:'11:44', videoId:'dQw4w9WgXcQ', bg:'#3a1a1a' },
+// ================================================================
+// YOUTUBE БИЧЛЭГҮҮД — ЭНЭ ХЭСГИЙГ ЗАСНА УУ
+// videoId: YouTube URL-аас авна
+//   https://www.youtube.com/watch?v=XXXXXXXX  =>  videoId: 'XXXXXXXX'
+//   https://youtu.be/XXXXXXXX                 =>  videoId: 'XXXXXXXX'
+// bg: thumbnail арын өнгө (hex)
+// ================================================================
+let ytLinks = [
+  { title: 'Нууц үгний аюулгүй байдал',              channel: '', duration: '', videoId: 'ZclQv9v12_g', bg: '#1e3a5f' },
+  { title: 'Фишинг халдлагаас хэрхэн хамгаалах вэ?', channel: '', duration: '', videoId: 'qCNRAu5Amss', bg: '#2d1b69' },
+  { title: 'Сошиал медиагийн нууцлал тохиргоо',      channel: '', duration: '', videoId: '_6BU7jb3kbo', bg: '#1a3a2a' },
+  { title: 'VPN гэж юу вэ? Яагаад хэрэглэх вэ?',    channel: '', duration: '', videoId: 'L9gu9P9BuUI', bg: '#3b1f00' },
+  { title: 'Кибер гэмт хэргийн хуулийн тайлбар',    channel: '', duration: '', videoId: 'Yr0xPVFcf-U', bg: '#1f1a3a' },
+  { title: 'Хакерчид хэрхэн аккаунт хулгайлдаг вэ?', channel: '', duration: '', videoId: 'XY-gB1VW7aI', bg: '#3a1a1a' },
 ];
+// ================================================================
 
 const adviceList = [
   { title:'Хүчтэй нууц үг ашиглаарай', text:'Нууц үгэнд 12-с дээш тэмдэгт, том жижиг үсэг, тоо, тусгай тэмдэгтийг хослуулан ашигла. Нэг нууц үгийг олон аккаунтад ашиглахаас зайлсхий.', icon:'lock' },
@@ -1333,6 +1738,7 @@ function init() {
   renderLikertQuestions('dadal-questions', dadalQuestions);
   renderTrainingCards(null);
   renderYtLinks();
+  renderUrlList();
   renderAdvice();
 }
 
@@ -1574,26 +1980,133 @@ function goToTraining() {
   goPage('surgalt');
 }
 
+// ===== URL MANAGER FUNCTIONS =====
+function extractVideoId(url) {
+  url = (url || '').trim();
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/|youtube\.com\/v\/)([A-Za-z0-9_-]{11})/,
+    /^([A-Za-z0-9_-]{11})$/
+  ];
+  for (const p of patterns) { const m = url.match(p); if (m) return m[1]; }
+  return null;
+}
+
+function previewUrl() {
+  const url = document.getElementById('input-url').value;
+  const vid = extractVideoId(url);
+  const preview = document.getElementById('url-preview');
+  if (vid) {
+    document.getElementById('preview-thumb').src = 'https://img.youtube.com/vi/' + vid + '/mqdefault.jpg';
+    document.getElementById('preview-title').textContent = document.getElementById('input-title').value || '(гарчиг байхгүй)';
+    document.getElementById('preview-channel').textContent = document.getElementById('input-channel').value || '';
+    document.getElementById('preview-vid').textContent = 'Video ID: ' + vid;
+    preview.style.display = 'block';
+  } else {
+    preview.style.display = 'none';
+  }
+}
+
+function addYtLink() {
+  const url = document.getElementById('input-url').value.trim();
+  const title = document.getElementById('input-title').value.trim();
+  const channel = document.getElementById('input-channel').value.trim();
+  const duration = document.getElementById('input-duration').value.trim();
+  const errEl = document.getElementById('url-error');
+  errEl.style.display = 'none';
+  if (!url) { showUrlError('URL оруулна уу'); return; }
+  const vid = extractVideoId(url);
+  if (!vid) { showUrlError('YouTube URL буруу. watch?v=... эсвэл youtu.be/... байх ёстой'); return; }
+  if (!title) { showUrlError('Гарчиг оруулна уу'); return; }
+  const colors = ['#1e3a5f','#2d1b69','#1a3a2a','#3b1f00','#1f1a3a','#3a1a1a','#0e2a3a','#1a2a3a'];
+  ytLinks.push({ title, channel: channel || 'YouTube', duration: duration || '', videoId: vid, bg: colors[ytLinks.length % colors.length] });
+  document.getElementById('input-url').value = '';
+  document.getElementById('input-title').value = '';
+  document.getElementById('input-channel').value = '';
+  document.getElementById('input-duration').value = '';
+  document.getElementById('url-preview').style.display = 'none';
+  renderYtLinks();
+  renderUrlList();
+}
+
+function showUrlError(msg) {
+  const el = document.getElementById('url-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 4000);
+}
+
+function deleteYtLink(idx) {
+  ytLinks.splice(idx, 1);
+  renderYtLinks();
+  renderUrlList();
+}
+
+function moveYtLink(idx, dir) {
+  const to = idx + dir;
+  if (to < 0 || to >= ytLinks.length) return;
+  [ytLinks[idx], ytLinks[to]] = [ytLinks[to], ytLinks[idx]];
+  renderYtLinks();
+  renderUrlList();
+}
+
+function toggleUrlManager() {
+  document.getElementById('url-manager-body').classList.toggle('open');
+  document.getElementById('url-manager-chevron').classList.toggle('open');
+}
+
+function renderUrlList() {
+  const c = document.getElementById('url-list');
+  const countEl = document.getElementById('yt-count');
+  const badgeEl = document.getElementById('yt-badge');
+  if (countEl) countEl.textContent = ytLinks.length;
+  if (badgeEl) badgeEl.textContent = ytLinks.length + ' видео';
+  if (!c) return;
+  if (!ytLinks.length) {
+    c.innerHTML = '<p style="font-size:0.82rem;color:var(--gray-400);padding:0.25rem 0;">Одоогоор бичлэг байхгүй байна.</p>';
+    return;
+  }
+  c.innerHTML = ytLinks.map((yt, i) => `
+    <div class="url-list-item">
+      <img class="url-list-thumb" src="https://img.youtube.com/vi/${yt.videoId}/mqdefault.jpg" alt="" onerror="this.style.background='var(--gray-200)'">
+      <div class="url-list-info">
+        <div class="url-list-title">${yt.title}</div>
+        <div class="url-list-meta">${yt.channel}${yt.duration ? ' · ' + yt.duration : ''} &nbsp;·&nbsp; ID: ${yt.videoId}</div>
+      </div>
+      <div class="url-list-actions">
+        <button class="url-action-btn up" onclick="moveYtLink(${i},-1)" title="Дээш">
+          <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
+        <button class="url-action-btn down" onclick="moveYtLink(${i},1)" title="Доош">
+          <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <button class="url-action-btn delete" onclick="deleteYtLink(${i})" title="Устгах">
+          <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </button>
+      </div>
+    </div>`).join('');
+}
+
 // ===== YOUTUBE PREVIEWS =====
 function renderYtLinks() {
   const c = document.getElementById('yt-links');
+  if (!c) return;
+  if (!ytLinks.length) {
+    c.innerHTML = '<div class="yt-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg><p>Дээрх хэсгээс YouTube URL нэмнэ үү</p></div>';
+    return;
+  }
   c.innerHTML = ytLinks.map(yt => {
-    const thumbUrl = `https://img.youtube.com/vi/${yt.videoId}/mqdefault.jpg`;
-    const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(yt.title)}`;
-    return `
-      <a class="yt-preview" href="${searchUrl}" target="_blank">
-        <div class="yt-thumbnail" style="background:${yt.bg};">
-          <img src="${thumbUrl}" alt="${yt.title}" onerror="this.parentElement.innerHTML='<div style=\\'display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:0.5rem;\\'><div class=\\'yt-play-btn\\'><svg viewBox=\\'0 0 24 24\\'><polygon points=\\'5 3 19 12 5 21 5 3\\'/></svg></div><span style=\\'font-size:0.72rem;color:rgba(255,255,255,0.6);padding:0 1rem;text-align:center;\\'>${yt.channel}</span></div>'">
-          <span class="yt-duration">${yt.duration}</span>
-        </div>
-        <div class="yt-info">
-          <div class="yt-title">${yt.title}</div>
-          <div class="yt-channel">
-            <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
-            ${yt.channel}
-          </div>
-        </div>
-      </a>`;
+    const thumbUrl = 'https://img.youtube.com/vi/' + yt.videoId + '/mqdefault.jpg';
+    const videoUrl = 'https://www.youtube.com/watch?v=' + yt.videoId;
+    return '<a class="yt-preview" href="' + videoUrl + '" target="_blank">' +
+      '<div class="yt-thumbnail" style="background:' + yt.bg + ';">' +
+      '<img src="' + thumbUrl + '" alt="' + yt.title + '" onerror="this.style.display=\'none\'">' +
+      (yt.duration ? '<span class="yt-duration">' + yt.duration + '</span>' : '') +
+      '</div>' +
+      '<div class="yt-info">' +
+      '<div class="yt-title">' + yt.title + '</div>' +
+      '<div class="yt-channel">' +
+      '<svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>' +
+      yt.channel + '</div></div></a>';
   }).join('');
 }
 
